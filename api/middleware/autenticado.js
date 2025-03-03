@@ -5,7 +5,7 @@ module.exports = async (req, res, next) => {
     const token = req.headers.authorization
 
     if (!token) {
-        res.status(401).send({ message: 'Access Token não foi informado!' })
+        return res.status(401).send({ message: 'Access Token não foi informado!' })
     }
 
     const [, accessToken] = token.split(" ")
