@@ -19,19 +19,19 @@ const roles = (listaRoles) => {
         })
 
         if (!usuario) {
-            res.status(401).send('O usuário não foi encontrdo!')
+            return res.status(401).send({ message: 'O usuário não foi encontrdo!' })
         }
 
         const rolesCadastradas = usuario.usuario_das_roles
             .map((role) => role.nome)
-            .some((role) => listaRoles.include(role))
+            .some((role) => listaRoles.includes(role))
 
         if (!rolesCadastradas) {
-            res.status(401).send('O usuário não possui acesso a essa rota!')
+            return res.status(401).send({ message: 'O usuário não possui acesso a essa rota!' })
         }
 
         return next()
     }
 }
 
-module.exports - roles
+module.exports = roles
